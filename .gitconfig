@@ -12,4 +12,4 @@
 [difftool "vscode"]
 	cmd = "code --wait --diff $LOCAL $REMOTE"
 [credential]
-	helper = manager-core
+	helper = manager
