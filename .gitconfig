@@ -13,3 +13,4 @@
 	cmd = "code --wait --diff $LOCAL $REMOTE"
 [credential]
 	helper = manager
+	credentialStore = secretservice
