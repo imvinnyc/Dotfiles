@@ -1,0 +1,13 @@
+# This is Git's per-user configuration file.
+[user]
+	name = imvinnyc
+	email = vinnycavalier@me.com
+[init]
+	defaultBranch = main
+[core]
+	editor = code --wait
+	autocrlf = input
+[diff]
+	tool = vscode
+[difftool "vscode"]
+	cmd = "code --wait --diff $LOCAL $REMOTE"

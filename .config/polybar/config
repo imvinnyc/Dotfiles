@@ -1,0 +1,82 @@
+[bar/main]
+width = 100%
+height = 30
+background = #282c34cc
+foreground = #abb2bf
+font-0 = JetBrainsMono Nerd Font:size=11;1
+font-1 = Material Icons:size=12
+font-2 = FontAwesome:size=12
+border-size = 1
+border-color = #3b4048
+padding-left = 2
+padding-right = 2
+modules-left = i3
+modules-center = date
+modules-right = cpu spacer memory spacer network spacer volume spacer uptime
+
+[module/i3]
+type = internal/i3
+format = <label-state>
+label-focused = %index%
+label-unfocused = %index%
+label-urgent = %index%
+label-focused-padding = 1
+label-unfocused-padding = 1
+label-urgent-padding = 1
+label-focused-background = #61afef
+label-focused-foreground = #282c34
+label-unfocused-foreground = #5c6370
+label-urgent-background = #e06c75
+label-urgent-foreground = #ffffff
+label-separator = |
+label-separator-padding = 1
+
+[module/date]
+type = internal/date
+interval = 1
+format =  %Y-%m-%d  %H:%M:%S
+label = %output%
+label-padding = 2
+label-foreground = #61afef
+
+[module/cpu]
+type = internal/cpu
+format = <label>
+label =  CPU: %percentage%%
+label-foreground = #d19a66
+label-padding = 2
+
+[module/memory]
+type = internal/memory
+format = <label>
+label = %{T1}%{T-} RAM: %percentage_used%%
+label-foreground = #c678dd
+label-padding = 2
+
+[module/network]
+type = custom/script
+exec = ~/.config/polybar/network-status.sh
+interval = 5
+label-padding = 2
+
+[module/spacer]
+type = custom/script
+exec = echo " "  # Single space for subtle padding
+interval = 600
+
+[module/volume]
+type = custom/script
+exec = ~/.config/polybar/volume-status.sh
+interval = 1
+label =  %output%
+label-padding = 2
+label-foreground = #e5c07b
+
+[module/uptime]
+type = custom/script
+exec = uptime -p | sed 's/up //'
+interval = 10
+label =  Uptime: %output%
+label-padding = 2
+label-foreground = #98c379
+
