@@ -189,7 +189,7 @@ bindsym $mod+r mode "resize"
 # bar {}
 
 exec --no-startup-id ~/.config/polybar/launch.sh
-exec --no-startup-id feh --bg-scale ~/Downloads/jms-kFHz9Xh3PPU-unsplash.jpg
+exec --no-startup-id feh --bg-scale ~/wallpapers/i3-background.jpg
 exec --no-startup-id picom
 
 # Enable gaps

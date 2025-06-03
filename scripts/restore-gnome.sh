@@ -17,6 +17,7 @@ echo "⏳ Enabling extensions …"
 while read -r uuid; do
   gnome-extensions enable "$uuid" || echo "⚠️  $uuid not found"
 done < "$EXTLIST"
+gsettings set org.gnome.shell.extensions.dash-to-panel show-appmenu-button false
 
 echo "⏳ Rebuilding font cache …"
 fc-cache -fv
