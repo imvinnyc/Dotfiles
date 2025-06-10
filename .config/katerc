@@ -7,6 +7,9 @@ Show Status Bar=true
 Show Tab Bar=true
 Show Url Nav Bar=true
 
+[KDE]
+widgetStyle=Breeze
+
 [KTextEditor Renderer]
 Animate Bracket Matching=false
 Auto Color Theme Selection=true
@@ -26,7 +29,7 @@ Search History=shadow
 1920x1080 screen: Width=924
 
 [UiSettings]
-ColorScheme=
+ColorScheme=Breeze Dark
 
 [filetree]
 editShade=183,220,246

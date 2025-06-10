@@ -12,9 +12,9 @@ Toggle Screen Reader On and Off=Meta+Alt+S,Meta+Alt+S,Toggle Screen Reader On an
 _k_friendly_name=Accessibility
 
 [kcm_touchpad]
-Disable Touchpad=Touchpad Off,Touchpad Off,
-Enable Touchpad=Touchpad On,Touchpad On,
-Toggle Touchpad=Touchpad Toggle\tMeta+Ctrl+Zenkaku Hankaku,Touchpad Toggle\tTouchpad Toggle\tMeta+Ctrl+Touchpad Toggle\tMeta+Ctrl+Zenkaku Hankaku,
+Disable Touchpad=Touchpad Off,Touchpad Off,Disable Touchpad
+Enable Touchpad=Touchpad On,Touchpad On,Enable Touchpad
+Toggle Touchpad=Touchpad Toggle\tMeta+Ctrl+Zenkaku Hankaku,Touchpad Toggle\tMeta+Ctrl+Touchpad Toggle\tMeta+Ctrl+Zenkaku Hankaku,Toggle Touchpad
 _k_friendly_name=Touchpad
 
 [kmix]
@@ -62,6 +62,7 @@ MoveZoomUp=none,none,Move Zoomed Area Upwards
 Overview=Meta+W,Meta+W,Toggle Overview
 Setup Window Shortcut=none,,Setup Window Shortcut
 Show Desktop=Meta+D,Meta+D,Peek at Desktop
+Suspend Compositing=Alt+Shift+F12,Alt+Shift+F12,Suspend Compositing
 Switch One Desktop Down=Meta+Ctrl+Down,Meta+Ctrl+Down,Switch One Desktop Down
 Switch One Desktop Up=Meta+Ctrl+Up,Meta+Ctrl+Up,Switch One Desktop Up
 Switch One Desktop to the Left=Meta+Ctrl+Left,Meta+Ctrl+Left,Switch One Desktop to the Left
@@ -119,10 +120,10 @@ Walk Through Windows of Current Application Alternative (Reverse)=none,,Walk Thr
 Window Above Other Windows=none,,Keep Window Above Others
 Window Below Other Windows=none,,Keep Window Below Others
 Window Close=Alt+F4,Alt+F4,Close Window
-Window Custom Quick Tile Bottom=,,Custom Quick Tile Window to the Bottom
-Window Custom Quick Tile Left=,,Custom Quick Tile Window to the Left
-Window Custom Quick Tile Right=,,Custom Quick Tile Window to the Right
-Window Custom Quick Tile Top=,,Custom Quick Tile Window to the Top
+Window Custom Quick Tile Bottom=none,,Custom Quick Tile Window to the Bottom
+Window Custom Quick Tile Left=none,,Custom Quick Tile Window to the Left
+Window Custom Quick Tile Right=none,,Custom Quick Tile Window to the Right
+Window Custom Quick Tile Top=none,,Custom Quick Tile Window to the Top
 Window Fullscreen=none,,Make Window Fullscreen
 Window Grow Horizontal=none,,Expand Window Horizontally
 Window Grow Vertical=none,,Expand Window Vertically

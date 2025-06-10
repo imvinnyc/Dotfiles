@@ -2,4 +2,9 @@
 count=0
 
 [Session: saved at previous logout]
-count=0
+clientId1=1012c15b14dcd000174950967800000272580005
+count=1
+program1=/usr/lib/DiscoverNotifier
+restartCommand1=/usr/lib/DiscoverNotifier,-session,1012c15b14dcd000174950967800000272580005_1749509929_221417
+restartStyleHint1=0
+userId1=vinny

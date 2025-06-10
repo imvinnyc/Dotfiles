@@ -12,5 +12,8 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 [Tiling][7c12479a-eac0-5ba2-9fe7-2557127f9ce2]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"layoutDirection":"floating","tiles":[{"height":0.25,"width":0.19999999999999996,"x":0.8,"y":0.05}],"width":0.25}]}
 
+[Tiling][fb7bfad0-44de-5b86-a105-ec5ce5d4cb6d]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Xwayland]
 Scale=1

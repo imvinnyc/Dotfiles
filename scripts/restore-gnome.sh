@@ -2,7 +2,7 @@
 set -euo pipefail
 
 BASE="$(cd "$(dirname "$0")/.." && pwd)"
-DCONF="$BASE/gnome/gnome-dconf.ini"
+DCONF="$BASE/gnome/dconf.ini"
 EXTLIST="$BASE/gnome/extensions.txt"
 EXTDIR="$BASE/gnome/extensions"
 
@@ -17,7 +17,6 @@ echo "⏳ Enabling extensions …"
 while read -r uuid; do
   gnome-extensions enable "$uuid" || echo "⚠️  $uuid not found"
 done < "$EXTLIST"
-gsettings set org.gnome.shell.extensions.dash-to-panel show-appmenu-button false
 
 echo "⏳ Rebuilding font cache …"
 fc-cache -fv
