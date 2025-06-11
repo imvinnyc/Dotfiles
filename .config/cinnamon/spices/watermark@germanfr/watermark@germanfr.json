@@ -18,14 +18,14 @@
             "Manjaro (with text)": "manjaro-text",
             "Custom...": "other"
         },
-        "value": "arch"
+        "value": "cinnamon"
     },
     "custom-icon": {
         "type": "iconfilechooser",
         "description": "Custom icon or image",
         "default": "start-here-symbolic",
         "dependency": "icon=other",
-        "value": "start-here-symbolic"
+        "value": "alienarena"
     },
     "alpha": {
         "type": "scale",
@@ -78,7 +78,7 @@
             "Center": 50,
             "Bottom": 100
         },
-        "value": 50
+        "value": 100
     },
     "margin-y": {
         "type": "spinbutton",
@@ -99,7 +99,7 @@
         "type": "switch",
         "description": "Use a custom size",
         "default": false,
-        "value": false
+        "value": true
     },
     "size": {
         "type": "spinbutton",
