@@ -1,0 +1,5 @@
+
+[Default Applications]
+inode/directory=nemo.desktop
+x-scheme-handler/lunarclient=lunarclient.desktop
+x-scheme-handler/discord-562286213059444737=lunarclient.desktop

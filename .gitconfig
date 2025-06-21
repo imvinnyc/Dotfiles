@@ -1,0 +1,18 @@
+# This is Git's per-user configuration file.
+[user]
+	name = imvinnyc
+	email = vinnycavalier@me.com
+[init]
+	defaultBranch = main
+[core]
+	editor = code --wait
+	autocrlf = input
+[diff]
+	tool = vscode
+[difftool "vscode"]
+	cmd = "code --wait --diff $LOCAL $REMOTE"
+[credential]
+	credentialStore = secretservice
+	helper = /usr/bin/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
