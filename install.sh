@@ -134,11 +134,11 @@ case $sel in
     ;;
  3)
     install_pac "${PAC_GNOME[@]}"
-    ensure_yay; install_aur "${AUR_GNOME[@]}"
     bak_and_checkout gnome wallpapers .local/share/cinnamon/extensions \
                      .config/cinnamon .icons restore-gnome.sh .gtkrc-2.0 \
                      .config/kdedefaults .config/xsettingsd .config/gtkrc \
-                     .config/gtkrc-2.0 .config/kdeglobals .config/mimeapps.list
+                     .config/gtkrc-2.0 .config/kdeglobals .config/mimeapps.list \
+                     .config/gtk-3.0
     ./restore-gnome.sh || true
     echo -e "\e[32mRebooting in 5 s…\e[0m"; sleep 5; systemctl reboot
     ;;
