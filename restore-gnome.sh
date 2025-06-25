@@ -19,5 +19,3 @@ done < "$EXTLIST"
 
 echo "Rebuilding font cache…"
 fc-cache -fv
-
-echo "Done!  Press Alt+F2 → r or log out/in."
