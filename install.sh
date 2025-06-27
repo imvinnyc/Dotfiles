@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# -- Helpers --
 die()  { printf "\e[31m%s\e[0m\n" "$*" >&2; exit 1; }
 need() { command -v "$1" &>/dev/null; }
 
@@ -40,27 +41,34 @@ bak_and_checkout() {
   while IFS= read -r f; do
     if [[ -e $HOME/$f ]]; then
       mkdir -p "$HOME/$(dirname "$f")"
-      mv    "$HOME/$f" "$HOME/${f}.bak"
+      mv "$HOME/$f" "$HOME/${f}.bak"
     fi
   done
   git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" checkout main -- "$@"
+  patch_username $(git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" ls-tree -r --name-only main)
 }
 
 bak_and_checkout_full() {
-  git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" ls-files -z \
-    | xargs -0 rm -f --
-
+  git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" ls-files -z |
+    xargs -0 rm -f --
   rm -rf "$HOME/.dotfiles"
   git clone --bare https://github.com/imvinnyc/Dotfiles.git "$HOME/.dotfiles"
 
-  git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" checkout 2>&1 \
-    | awk '/^\t/ {print substr($0,2)}' \
-    | xargs -I{} bash -c '
-        mkdir -p "$HOME/$(dirname "{}")"
-        mv "$HOME/{}" "$HOME/{}.bak"
-      ' || true
+  git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" checkout 2>&1 |
+    awk '/^\t/ {print substr($0,2)}' |
+    xargs -I{} bash -c 'mkdir -p "$HOME/$(dirname "{}")"; mv "$HOME/{}" "$HOME/{}.bak"' || true
 
   git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" checkout
+  patch_username $(git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" ls-tree -r --name-only main)
+}
+
+patch_username() {
+  local old="/home/vinny" new="$HOME"
+  [[ $old == "$new" ]] && return 0
+  for path in "$@"; do
+    [[ -f $HOME/$path ]] || continue
+    LC_ALL=C sed -i "s|$old|$new|g" "$HOME/$path" 2>/dev/null || true
+  done
 }
 
 clone_if_missing() { [[ -d $2 ]] || git clone "$1" "$2"; }
@@ -140,7 +148,7 @@ case $sel in
                      .config/gtkrc-2.0 .config/kdeglobals .config/mimeapps.list \
                      .config/gtk-3.0
     ./restore-gnome.sh || true
-    echo -e "\e[32mRebooting in 5 s…\e[0m"; sleep 5; systemctl reboot
+    echo -e "\e[32mRebooting in 5 s …\e[0m"; sleep 5; systemctl reboot
     ;;
  4) install_pac "${PAC_VIM[@]}";       bak_and_checkout .vimrc ;;
  5) install_pac "${PAC_FASTFETCH[@]}"; bak_and_checkout .config/fastfetch ;;
@@ -161,9 +169,10 @@ case $sel in
                      "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
     clone_if_missing https://github.com/zsh-users/zsh-autosuggestions.git \
                      "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+
     bak_and_checkout_full
     ./restore-gnome.sh || true
-    echo -e "\e[32mRebooting in 5 s…\e[0m"; sleep 5; systemctl reboot
+    echo -e "\e[32mRebooting in 5 s …\e[0m"; sleep 5; systemctl reboot
     ;;
   q|Q) exit 0 ;;
   *)   die "Unknown selection" ;;
