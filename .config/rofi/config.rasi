@@ -1,1 +1,81 @@
-@theme "/usr/share/rofi/themes/Paper.rasi"
+configuration {
+  display-drun:  "Applications:";
+  display-window:"Windows:";
+
+  drun-display-format: "{icon}  {name}";
+  font: "JetBrainsMono Nerd Font Medium 12";
+  modi: "window,run,drun";
+  show-icons: true;
+}
+
+@theme "/dev/null"
+
+* {
+  bg:          #1e1e2ecc;
+  bg-alt:      #585b70b3;
+  bg-selected: #313244cc;
+
+  fg:          #cdd6f4;
+  fg-alt:      #a6adc8;
+
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+}
+
+window {
+  width: 38%;
+  background-color: @bg;
+  border-radius: 10;
+}
+
+mainbox {
+  children:   [inputbar, listview];
+  background-color: @bg;
+  padding:    6 6 8 6;
+}
+
+inputbar {
+  children: [prompt, entry];
+  background-color: @bg;
+  margin: 0 0 10 0;
+}
+
+prompt,
+entry {
+  background-color: @bg-alt;
+  padding: 14 10;
+  text-color: @fg;
+  font: "JetBrainsMono Nerd Font Medium 13";
+}
+
+listview {
+  background-color: @bg;
+  columns: 1;
+  lines:   10;
+}
+
+element {
+  padding: 10 14;
+  background-color: transparent;
+  text-color: @fg-alt;
+  font: "JetBrainsMono Nerd Font 12";
+}
+
+element selected {
+  text-color: @fg;
+  background-color: @bg-selected;
+}
+
+element-icon {
+  size: 30;
+  padding: 0 12 0 0;
+  background-color: transparent;
+}
+
+element-text {
+  background-color: transparent;
+  text-color: inherit;
+  vertical-align: 0.5;
+}

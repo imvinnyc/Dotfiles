@@ -1,7 +1,15 @@
-#!/bin/bash
-if nmcli -t -f active,ssid dev wifi | grep -q "^yes"; then
-    ssid=$(nmcli -t -f active,ssid dev wifi | awk -F: '$1 == "yes" {print $2}')
-    echo " $ssid"
+#!/usr/bin/env bash
+
+info=$(nmcli -t -f DEVICE,TYPE,STATE,CONNECTION dev status | grep ':connected:' | head -n1)
+
+if [[ -n $info ]]; then
+  IFS=':' read -r _dev type _state conn <<< "$info"
+
+  if [[ $type == wifi ]]; then
+    printf '  %s\n' "$conn"
+  else
+    printf '󰈁 Connected\n'
+  fi
 else
-    echo "  Offline"
+  printf '  Offline\n'
 fi

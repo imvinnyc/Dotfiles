@@ -36,6 +36,13 @@ ensure_yay() {
   fi
 }
 
+enable_nwmanager() {
+  if ! systemctl is-enabled --quiet NetworkManager 2>/dev/null; then
+    echo "Enabling and starting NetworkManager…"
+    sudo systemctl enable --now NetworkManager
+  fi
+}
+
 bak_and_checkout() {
   git --git-dir="$HOME/.dotfiles" ls-tree -r --name-only main -- "$@" |
   while IFS= read -r f; do
@@ -79,8 +86,8 @@ AUR_KITTY=(pokemon-colorscripts-git)
 
 PAC_I3=(i3 nemo kitty nerd-fonts alsa-utils pipewire pipewire-alsa \
         pipewire-pulse pipewire-jack wireplumber zsh dmenu rofi polybar \
-        feh fastfetch base-devel)
-AUR_I3=(picom-arian8j2-git pokemon-colorscripts-git)
+        feh fastfetch base-devel networkmanager)
+AUR_I3=(picom-pijulius-next-git pokemon-colorscripts-git)
 
 PAC_GNOME=(gnome gnome-extra gnome-shell-extensions gnome-tweaks nemo \
            dconf-editor nerd-fonts cinnamon plasma)
@@ -94,7 +101,7 @@ PAC_ALL=(vim git nemo kitty gnome gnome-extra gnome-shell-extensions \
          gnome-tweaks zsh dmenu rofi polybar feh dconf-editor plasma \
          alsa-utils fastfetch pipewire pipewire-alsa pipewire-pulse \
          pipewire-jack wireplumber i3 nerd-fonts cinnamon base-devel)
-AUR_ALL=(picom-arian8j2-git visual-studio-code-bin pokemon-colorscripts-git)
+AUR_ALL=(picom-pijulius-next-git visual-studio-code-bin pokemon-colorscripts-git)
 
 # -- Installation menu --
 cat <<EOF
@@ -128,6 +135,7 @@ case $sel in
  2)
     install_pac "${PAC_I3[@]}"
     ensure_yay; install_aur "${AUR_I3[@]}"
+    enable_nwmanager
     clone_if_missing https://github.com/ohmyzsh/ohmyzsh.git \
                      "$HOME/.oh-my-zsh"
     clone_if_missing https://github.com/romkatv/powerlevel10k.git \
@@ -138,7 +146,8 @@ case $sel in
                      "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
     bak_and_checkout .config/i3 .config/fastfetch .config/kitty .config/rofi \
                      .config/picom .config/polybar .p10k.zsh .p10k1.zsh \
-                     .bashrc .zshrc .xinitrc .bash_profile wallpapers .fehbg
+                     .bashrc .zshrc .xinitrc .bash_profile wallpapers .fehbg \
+                     .xprofile
     ;;
  3)
     install_pac "${PAC_GNOME[@]}"
@@ -160,7 +169,7 @@ case $sel in
  7)
     install_pac "${PAC_ALL[@]}"
     ensure_yay; install_aur "${AUR_ALL[@]}"
-
+    enable_nwmanager
     clone_if_missing https://github.com/ohmyzsh/ohmyzsh.git \
                      "$HOME/.oh-my-zsh"
     clone_if_missing https://github.com/romkatv/powerlevel10k.git \
@@ -169,7 +178,6 @@ case $sel in
                      "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
     clone_if_missing https://github.com/zsh-users/zsh-autosuggestions.git \
                      "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-
     bak_and_checkout_full
     ./restore-gnome.sh || true
     echo -e "\e[32mRebooting in 5 s …\e[0m"; sleep 5; systemctl reboot

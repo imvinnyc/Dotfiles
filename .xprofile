@@ -1,0 +1,9 @@
+# ~/.xprofile
+
+# Mouse / trackpad acceleration — set every *slave pointer* to -0.20920502092050208
+if command -v xinput >/dev/null 2>&1; then
+  for id in $(xinput list --short | \
+              grep -Po 'id=\K[0-9]+(?=.*slave\s+pointer)'); do
+    xinput --set-prop "$id" 'libinput Accel Speed' -0.20920502092050208 2>/dev/null
+  done
+fi
